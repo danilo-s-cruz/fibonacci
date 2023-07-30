@@ -1,33 +1,38 @@
-'''
-SEQUENCIA DE FIBONACCI
-'''
+# SEQUENCIA DE FIBONACCI
+
+sequencia = []
+
+def fibonacci(posicao):   
+    if posicao == 1:
+        return f"{posicao}º termo na sequência: {0}"
+        
+    elif posicao == 2:
+        return f"Sequência para {posicao} termos: {0, 1}"
+    
+    else:
+        a = 0
+        b = 1
+        sequencia = [0, 1]
+        for _ in range(posicao - 2): 
+            c = a + b
+            sequencia.append(c)
+            a = b
+            b = c
+        return f"Sequência para {posicao} termos: {tuple(sequencia)}"
+
 print('-' * 30)
 print('    SEQUÊNCIA DE FIBONACCI')
 print('-' * 30)
+
 while True:    
     try:
-        posicao = int(input('Informe a quantidade de termos: '))
+        termo = int(input('Informe a quantidade de termos para gerar a sequência: '))
+        if termo <= 0:
+             print("Insira um valor maior que zero.")
+             continue
+        break
     except ValueError:
-            print('Insira apenas números inteiros.')
+            print('Valor inválido! Insira apenas números inteiros.')
             continue
-    if posicao == 1:
-        print(f'Sequência de {posicao} termo:')
-        print(0)
-        break
-    elif posicao == 2:
-        print(f'Sequência de {posicao} termos:')
-        print(0, end=' ')
-        print(1)
-        break
-    elif posicao > 2:
-        a = 0
-        b = 1
-        print(f'Sequência de {posicao} termos:')
-        print(0, end=' ')
-        print(1, end=' ')
-        for x in range(posicao - 2): 
-            c = a + b
-            print (c, end=' ')
-            a = b
-            b = c
-        break
+
+print(fibonacci(termo))
